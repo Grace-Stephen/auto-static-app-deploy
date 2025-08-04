@@ -1,0 +1,33 @@
+name: Deploy Infrastructure (Without EC2)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: [self-hosted, linux, x64]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply (without EC2)
+        run: terraform apply -auto-approve -target=aws_ecr_repository.my_repo
+
+      - name: Terraform Apply (remaining infra except EC2)
+        run: terraform apply -auto-approve -target=aws_route53_zone.main -target=aws_lb.app_alb -target=aws_vpc.main
