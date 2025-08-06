@@ -40,10 +40,10 @@ variable "ecr_repo_name" {
 }
 
 
-variable "route53_zone_id" {
-  description = "Route 53 hosted zone ID"
-  type        = string
-}
+# variable "route53_zone_id" {
+#   description = "Route 53 hosted zone ID"
+#   type        = string
+# }
 
 variable "domain_name" {
   default = "gracestephen.site"
