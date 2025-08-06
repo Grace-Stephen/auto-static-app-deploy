@@ -26,12 +26,12 @@ resource "aws_route53_record" "cert_validation" {
     }
   }
 
-  # zone_id = var.route53_zone_id
-  name    = each.value.name
-  type    = each.value.type
-  records = [each.value.record]
-  ttl     = 300
-}
+#   # zone_id = var.route53_zone_id
+#   name    = each.value.name
+#   type    = each.value.type
+#   records = [each.value.record]
+#   ttl     = 300
+# }
 
 resource "aws_acm_certificate_validation" "cert" {
   provider                = aws.us_east_1
