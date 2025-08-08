@@ -15,6 +15,6 @@ module "infra" {
   ecr_repo_name = var.ecr_repo_name
   domain_name = var.domain_name
   subdomain = var.subdomain
-#   route53_zone_id = var.route53_zone_id
+  route53_zone_id = var.route53_zone_id
 }
 ##
