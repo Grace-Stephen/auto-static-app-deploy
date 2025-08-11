@@ -34,6 +34,12 @@ jobs:
         run: terraform output
 
       # ---------- Docker Build & Push ----------
+      # Install AWS CLI on the self-hosted runner
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
       - name: Log in to Amazon ECR
         id: login-ecr
         run: |
