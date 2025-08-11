@@ -38,7 +38,9 @@ jobs:
       - name: Install AWS CLI
         run: |
           sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
           sudo apt-get install -y awscli
+      
 
       - name: Log in to Amazon ECR
         id: login-ecr
