@@ -3,5 +3,5 @@ FROM nginx:alpine
 # Clean up default web content
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy your static website into the Nginx web directory
-COPY . /usr/share/nginx/html
+# Copy only the contents of app/ into the Nginx web directory
+COPY app/ /usr/share/nginx/html
