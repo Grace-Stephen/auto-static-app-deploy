@@ -5,3 +5,5 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy only the contents of app/ into the Nginx web directory
 COPY app/ /usr/share/nginx/html
+
+#
