@@ -1,11 +1,12 @@
 provider "aws" {
   alias  = "us_east_1"
-  region = "us-east-1" # Required region for ACM with ALB + HTTPS
+  region = "us-east-1" # ACM cert must be in us-east-1 for ALB
 }
 
 resource "aws_acm_certificate" "ssl_cert" {
   provider          = aws.us_east_1
-  domain_name       = var.domain_name
+  domain_name       = var.domain_name                  # gracestephen.site
+  subject_alternative_names = ["www.${var.domain_name}"] # www.gracestephen.site
   validation_method = "DNS"
 
   lifecycle {
@@ -17,6 +18,7 @@ resource "aws_acm_certificate" "ssl_cert" {
   }
 }
 
+# Create DNS validation records for both domains
 resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.ssl_cert.domain_validation_options : dvo.domain_name => {
@@ -38,5 +40,3 @@ resource "aws_acm_certificate_validation" "cert" {
   certificate_arn         = aws_acm_certificate.ssl_cert.arn
   validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }
-
-####

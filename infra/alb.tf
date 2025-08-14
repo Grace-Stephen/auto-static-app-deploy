@@ -32,6 +32,7 @@ resource "aws_lb_target_group_attachment" "app_attachment" {
   port             = 80
 }
 
+# HTTP Listener (redirect to HTTPS)
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.app_alb.arn
   port              = 80
@@ -48,12 +49,13 @@ resource "aws_lb_listener" "http" {
   }
 }
 
+# HTTPS Listener
 resource "aws_lb_listener" "https" {
   load_balancer_arn = aws_lb.app_alb.arn
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = aws_acm_certificate_validation.cert.certificate_arn
+  certificate_arn   = aws_acm_certificate_validation.cert.certificate_arn # Updated cert with both domains
 
   default_action {
     type             = "forward"
