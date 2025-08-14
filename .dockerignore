@@ -1,0 +1,32 @@
+# Ignore Git data
+.git
+.gitignore
+
+# Ignore GitHub Actions workflow files
+.github
+
+# Ignore Terraform files & state
+*.tf
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+
+# Ignore infra directory (Terraform)
+infra/
+
+# Ignore OS and editor junk
+.DS_Store
+Thumbs.db
+
+# Ignore secrets / env files
+.env
+*.pem
+*.key
+
+# Ignore Python caches (if any)
+__pycache__/
+*.pyc
+
+# Ignore Docker-related but not needed in container
+docker/
+!docker/dockerfile   # keep the Dockerfile
