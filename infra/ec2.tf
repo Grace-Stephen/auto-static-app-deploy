@@ -25,3 +25,4 @@ resource "aws_instance" "app" {
     aws_ecr_repository.app
   ]
 }
+#

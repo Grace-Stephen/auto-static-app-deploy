@@ -35,28 +35,28 @@ jobs:
 
       # ---------- Docker Build & Push ----------
       # Install AWS CLI on the self-hosted runner
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-          sudo apt-get install -y awscli
+      # - name: Install AWS CLI
+      #   run: |
+      #     sudo apt-get update
+      #     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+      #     sudo apt-get install -y awscli
       
 
-      - name: Log in to Amazon ECR
-        shell: bash
-        id: login-ecr
-        run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
+      # - name: Log in to Amazon ECR
+      #   shell: bash
+      #   id: login-ecr
+      #   run: |
+      #     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
 
-      - name: Build Docker Image
-        run: |
-          docker build -f docker/dockerfile -t my-app:latest .
+      # - name: Build Docker Image
+      #   run: |
+      #     docker build -f docker/dockerfile -t my-app:latest .
 
 
-      - name: Tag Docker Image
-        run: |
-          docker tag my-app:latest ${{ secrets.ECR_URI }}:latest
+      # - name: Tag Docker Image
+      #   run: |
+      #     docker tag my-app:latest ${{ secrets.ECR_URI }}:latest
 
-      - name: Push Docker Image to ECR
-        run: |
-          docker push ${{ secrets.ECR_URI }}:latest
+      # - name: Push Docker Image to ECR
+      #   run: |
+      #     docker push ${{ secrets.ECR_URI }}:latest
