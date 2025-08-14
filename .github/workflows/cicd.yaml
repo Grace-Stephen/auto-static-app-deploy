@@ -32,6 +32,10 @@ jobs:
 
       - name: Show Terraform Outputs
         run: terraform output
+      
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve 
+
 
       # ---------- Docker Build & Push ----------
       # Install AWS CLI on the self-hosted runner
