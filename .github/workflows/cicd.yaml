@@ -24,14 +24,14 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
-        run: terraform plan
+      # - name: Terraform Plan
+      #   run: terraform plan
 
-      - name: Terraform Apply (All infra)
-        run: terraform apply -auto-approve
+      # - name: Terraform Apply (All infra)
+      #   run: terraform apply -auto-approve
 
-      - name: Show Terraform Outputs
-        run: terraform output
+      # - name: Show Terraform Outputs
+      #   run: terraform output
       
       - name: Terraform Destroy
         run: terraform destroy -auto-approve 
