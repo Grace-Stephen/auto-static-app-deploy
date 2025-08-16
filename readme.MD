@@ -1,4 +1,5 @@
 Automated Deployment of a Secure, High-Availability Dockerized Static Website
+
 Overview
 
 This project demonstrates the end-to-end automation of deploying a static website hosted in a Docker container on AWS EC2, using Terraform and GitHub Actions. While a static site could be served more simply via S3 + CloudFront, this build deliberately implements secure, high-availability infrastructure to simulate real-world production-grade architecture.
