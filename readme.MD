@@ -113,9 +113,3 @@ Deployment Flow
 4. EC2 instance pulls and runs the image automatically.
 
 5. Application accessible via HTTPS through ALB DNS or custom domain.
-
-Future Optimizations
-- Use S3 + CloudFront for cost-effective static site hosting
-- Implement auto-scaling groups for EC2
-- Add monitoring with CloudWatch
-- Explore ECS Fargate for container orchestration
