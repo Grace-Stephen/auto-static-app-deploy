@@ -8,11 +8,15 @@ The entire deployment—from provisioning infrastructure to running the containe
 
 Architecture
 
-This setup follows a two-tier architecture:
+This setup follows a single-tier application architecture deployed across a two-layer network design (public and private subnets) for better security and scalability.
 
-Tier 1 (Public): Application Load Balancer, Route 53 DNS, ACM (SSL/TLS certificates)
+Public Layer (Network Layer 1):
+Includes Route 53 (DNS management), an Application Load Balancer (ALB), and AWS Certificate Manager (ACM) for SSL/TLS encryption.
+This layer handles incoming traffic, secures HTTPS communication, and routes user requests to the application servers in the private subnet.
 
-Tier 2 (Private): EC2 instances hosting the Dockerized application
+Private Layer (Network Layer 2):
+Hosts the EC2 instances running the Dockerized application.
+These instances are not publicly accessible — they receive traffic only through the load balancer in the public layer, ensuring better isolation and security.
 
 Key security consideration:
 The EC2 instance running the application is not directly exposed to the internet. The ALB acts as a reverse proxy, terminating SSL, forwarding traffic securely, and shielding the private IP of the server.
